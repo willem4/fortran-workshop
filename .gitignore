@@ -1,0 +1,21 @@
+# CLion default CMake  build directory
+cmake-build-*
+.idea
+
+# VS Code
+# - Default CMake build directories
+/build/
+/out/
+# -
+
+# Python virtual environment
+/venv
+
+# Generated output
+*.txt
+*.svg
+*.log
+
+# VSCode Modern Fortran extension
+*.i90
+*.mod
