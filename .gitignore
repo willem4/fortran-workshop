@@ -2,6 +2,9 @@
 cmake-build-*
 .idea
 
+# Visual Studio
+.vs/
+
 # VS Code
 # - Default CMake build directories
 /build/

@@ -10,7 +10,7 @@ Install CMake [Download here](https://cmake.org/download/)
 
 You can install Intel OneAPI Fortran Essentials [Download here](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-download.html) or Visual Studio (which you probably already have installed).
 
-### Python 3.13
+### Python 3
 
 [Download here](https://www.python.org/downloads/)
 
