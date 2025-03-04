@@ -12,4 +12,4 @@ See the [README for Visual Studio](docs/README-Visual-Studio.md).
 
 This option has much better support for working with Fortran, but may be less familiar.
 
-See the README for [Visual Studio Code](docs/README-VS-Code.md).
+See the [README for Visual Studio Code](docs/README-VS-Code.md).
