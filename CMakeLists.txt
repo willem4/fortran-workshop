@@ -1,0 +1,56 @@
+cmake_minimum_required(VERSION 3.30)
+
+project(fortran-workshop VERSION 0.1
+    LANGUAGES C Fortran
+    DESCRIPTION "Fortran workshop")
+
+include(cmake/compiler_flags.cmake)
+include(cmake/python_dependencies.cmake)
+
+add_subdirectory(src/common)
+
+add_subdirectory(src/hello_world)
+
+enable_testing()
+include(CTest)
+
+# Disable deprecation warnings for the test-drive package
+set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
+# Disable the tests of test-drive itself
+set(TEST_DRIVE_BUILD_TESTING OFF CACHE BOOL "Enable testing for the test-drive project")
+
+include(cmake/find-test-drive)
+if(NOT TARGET "test-drive::test-drive")
+    find_package("test-drive" REQUIRED)
+endif()
+
+# Unit testing
+set(
+    tests
+    "hello_world"
+)
+set(
+    test-srcs
+    "test/main.f90"
+)
+foreach(t IN LISTS tests)
+    string(MAKE_C_IDENTIFIER ${t} t)
+    list(APPEND test-srcs "test/test_${t}.f90")
+endforeach()
+
+add_executable(
+    "hello-world-tester"
+    "${test-srcs}"
+)
+target_link_libraries(
+    "hello-world-tester"
+    PRIVATE
+    "hello_world-lib"
+    "test-drive::test-drive"
+)
+
+target_include_directories("hello-world-tester" INTERFACE ${CMAKE_CURRENT_BINARY_DIR})
+
+foreach(t IN LISTS tests)
+    add_test("${t}" "hello-world-tester" "${t}")
+endforeach()
