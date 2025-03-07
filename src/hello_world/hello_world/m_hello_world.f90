@@ -1,5 +1,5 @@
 module m_hello_world
-   implicit none
+   implicit none(type, external)
 
    private
 

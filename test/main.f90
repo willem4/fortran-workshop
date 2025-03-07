@@ -1,9 +1,12 @@
 program tester
-   use, intrinsic :: iso_fortran_env, only: error_unit
+   use, intrinsic :: iso_fortran_env, only: output_unit
    use testdrive, only: run_testsuite, new_testsuite, testsuite_type, &
            & select_suite, run_selected, get_argument
    use test_hello_world, only: collect_hello_world_tests
-   implicit none
+   use test_vector_lib, only: collect_vector_lib_tests => collect_tests
+
+   implicit none(type, external)
+
    integer :: stat, is
    character(len=:), allocatable :: suite_name, test_name
    type(testsuite_type), allocatable :: testsuites(:)
@@ -12,7 +15,8 @@ program tester
    stat = 0
 
    testsuites = [ &
-                new_testsuite("hello_world", collect_hello_world_tests) &
+                new_testsuite("hello_world", collect_hello_world_tests), &
+                new_testsuite("vector_lib", collect_vector_lib_tests) &
                 ]
 
    call get_argument(1, suite_name)
@@ -22,31 +26,31 @@ program tester
       is = select_suite(testsuites, suite_name)
       if (is > 0 .and. is <= size(testsuites)) then
          if (allocated(test_name)) then
-            write (error_unit, fmt) "Suite:", testsuites(is)%name
-            call run_selected(testsuites(is)%collect, test_name, error_unit, stat)
+            write (output_unit, fmt) "Suite:", testsuites(is)%name
+            call run_selected(testsuites(is)%collect, test_name, output_unit, stat)
             if (stat < 0) then
                error stop 1
             end if
          else
-            write (error_unit, fmt) "Testing:", testsuites(is)%name
-            call run_testsuite(testsuites(is)%collect, error_unit, stat)
+            write (output_unit, fmt) "Testing:", testsuites(is)%name
+            call run_testsuite(testsuites(is)%collect, output_unit, stat)
          end if
       else
-         write (error_unit, fmt) "Available testsuites"
+         write (output_unit, fmt) "Available testsuites"
          do is = 1, size(testsuites)
-            write (error_unit, fmt) "-", testsuites(is)%name
+            write (output_unit, fmt) "-", testsuites(is)%name
          end do
          error stop 1
       end if
    else
       do is = 1, size(testsuites)
-         write (error_unit, fmt) "Testing:", testsuites(is)%name
-         call run_testsuite(testsuites(is)%collect, error_unit, stat)
+         write (output_unit, fmt) "Testing:", testsuites(is)%name
+         call run_testsuite(testsuites(is)%collect, output_unit, stat)
       end do
    end if
 
    if (stat > 0) then
-      write (error_unit, '(i0, 1x, a)') stat, "test(s) failed!"
+      write (output_unit, '(i0, 1x, a)') stat, "test(s) failed!"
       error stop 1
    end if
 

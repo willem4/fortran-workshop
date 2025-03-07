@@ -9,7 +9,11 @@ include(cmake/python_dependencies.cmake)
 
 add_subdirectory(src/common)
 
+add_subdirectory(src/vector)
+
 add_subdirectory(src/hello_world)
+
+add_subdirectory(src/logging_demo)
 
 enable_testing()
 include(CTest)
@@ -28,6 +32,7 @@ endif()
 set(
     tests
     "hello_world"
+    "vector_lib"
 )
 set(
     test-srcs
@@ -46,6 +51,7 @@ target_link_libraries(
     "hello-world-tester"
     PRIVATE
     "hello_world-lib"
+    "vector-lib"
     "test-drive::test-drive"
 )
 
