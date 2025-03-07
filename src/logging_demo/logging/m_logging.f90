@@ -57,11 +57,11 @@ contains
       character(len=8) :: date
       character(len=10) :: time
       character(len=5) :: zone
-      character(len=26) :: iso_time
+      character(len=24) :: iso_time
 
       call date_and_time(date, time, zone)
 
-      iso_time = trim(date(1:4))//'-'//trim(date(5:6))//'-'//trim(date(7:8))//'T'// &
-                 trim(time(1:2))//':'//trim(time(3:4))//':'//trim(time(5:6))//zone
+      iso_time = date(1:4)//'-'//date(5:6)//'-'//date(7:8)//'T'// &
+                 time(1:2)//':'//time(3:4)//':'//time(5:6)//zone
    end function current_time
 end module m_logging
