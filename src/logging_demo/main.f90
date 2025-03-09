@@ -1,7 +1,7 @@
 program example
    use m_logging, only: init_logging, t_abstract_logger, t_do_everything_logger
 
-   implicit none
+   implicit none(type, external)
 
    ! Depend on the abstract logger
    class(t_abstract_logger), allocatable :: logger

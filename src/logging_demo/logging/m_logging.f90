@@ -14,7 +14,7 @@ module m_logging
    interface
       subroutine log_function_interface(self, message)
          import t_abstract_logger
-         implicit none
+         implicit none(type, external)
 
          class(t_abstract_logger), intent(in) :: self
          character(len=*), intent(in) :: message

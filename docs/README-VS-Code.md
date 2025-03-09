@@ -27,7 +27,7 @@ Optional:
 
 CMake Tools will ask for a "CMake configure preset". Select:
 
-- On Windows, with Visual Studio installed: pick "windows_visual_studio_ifx".
+- On Windows, with Visual Studio installed: pick "ifx".
 - On Linux, with Intel oneAPI Fortran Essentials installed: pick "linux_make_ifx
 
 ## Building and running

@@ -15,6 +15,8 @@ add_subdirectory(src/hello_world_app)
 
 add_subdirectory(src/logging_demo)
 
+add_subdirectory(src/performance_demo)
+
 enable_testing()
 include(CTest)
 
