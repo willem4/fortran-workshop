@@ -4,8 +4,8 @@
 
 Requirements:
 
-- Visual Studio 2022 (!)
-- Intel oneAPI Fortran Essentials [Download here](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-download.html)
+- For Windows: Visual Studio 2022 and [Download here](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-download.html)
+- For Linux: CMake >= 2.30 and Intel oneAPI Fortran Essentials  [Download here](https://www.intel.com/content/www/us/en/developer/tools/oneapi/fortran-compiler-download.html)
 - Make sure the oneAPI bin folder is in your `PATH` environment variable (e.g. `C:\Program Files (x86)\Intel\oneAPI\compiler\latest\bin`)
 - Python 3 [Download here](https://www.python.org/downloads/)
 - Visual Studio Code IDE [Download here](https://code.visualstudio.com/download).
@@ -25,7 +25,10 @@ Optional:
 - CMake IntelliSense (formatting, auto-complete in CMake configuration)
 - Python (helps with writing Python code for the output visualization scripts)
 
-CMake Tools may ask for a "CMake configure preset". Pick "ifx".
+CMake Tools will ask for a "CMake configure preset". Select:
+
+- On Windows, with Visual Studio installed: pick "windows_visual_studio_ifx".
+- On Linux, with Intel oneAPI Fortran Essentials installed: pick "linux_make_ifx
 
 ## Building and running
 

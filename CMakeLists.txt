@@ -11,7 +11,7 @@ add_subdirectory(src/common)
 
 add_subdirectory(src/vector)
 
-add_subdirectory(src/hello_world)
+add_subdirectory(src/hello_world_app)
 
 add_subdirectory(src/logging_demo)
 

@@ -1,4 +1,4 @@
-add_subdirectory(hello_world)
+add_subdirectory(hello_world_lib)
 
 add_executable(hello_world main.f90)
 target_link_libraries(hello_world PRIVATE

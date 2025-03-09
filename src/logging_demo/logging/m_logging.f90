@@ -33,11 +33,11 @@ contains
 
       if (debug) then
          if (should_log_to_file) then
-            write (log_file, fmt=*) current_time()//message
+            write (log_file, fmt=*) current_time()//' '//message
          end if
 
          if (.not. quiet) then
-            print *, current_time()//message
+            print *, current_time()//' '//message
          end if
       end if
    end subroutine do_everytying_logger_log

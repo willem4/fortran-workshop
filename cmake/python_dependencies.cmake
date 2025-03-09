@@ -28,8 +28,14 @@ if(NOT EXISTS ${VENV_PATH})
     endif()
 endif()
 
+if(WIN32)
+    set(pip_executable "${VENV_PATH}/Scripts/pip")
+else()
+    set(pip_executable "${VENV_PATH}/bin/pip")
+endif()
+
 execute_process(
-    COMMAND ${VENV_PATH}/Scripts/pip install -r ${REQUIREMENTS_FILE}
+    COMMAND ${pip_executable} install -r ${REQUIREMENTS_FILE}
     RESULT_VARIABLE result
     OUTPUT_VARIABLE COMMAND_OUTPUT
     ERROR_VARIABLE COMMAND_ERROR
