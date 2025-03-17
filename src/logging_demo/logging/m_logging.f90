@@ -9,6 +9,7 @@ module m_logging
    type, abstract :: t_abstract_logger
    contains
       procedure(log_function_interface), deferred :: log
+      procedure :: init => init_logging
    end type t_abstract_logger
 
    interface
@@ -19,6 +20,15 @@ module m_logging
          class(t_abstract_logger), intent(in) :: self
          character(len=*), intent(in) :: message
       end subroutine log_function_interface
+
+      subroutine init_logging(self, quiet, )
+         import t_abstract_logger
+         implicit none(type, external)
+
+         class(t_abstract_logger), intent(inout) :: self
+         
+      end subroutine init_logging
+      
    end interface
 
    type, extends(t_abstract_logger) :: t_do_everything_logger
@@ -42,7 +52,8 @@ contains
       end if
    end subroutine do_everytying_logger_log
 
-   subroutine init_logging()
+   subroutine init(self)
+      class(t_abstract_logger), intent(inout) :: self
       integer :: open_status
       ! We could read this from CLI arguments
       ! --debug, --quiet, and --log-file
@@ -51,7 +62,7 @@ contains
       open (file='debug.log', newunit=log_file, status='unknown', &
             position='append', action='write', iostat=open_status)
       should_log_to_file = open_status == 0
-   end subroutine init_logging
+   end subroutine init
 
    function current_time() result(iso_time)
       character(len=8) :: date
